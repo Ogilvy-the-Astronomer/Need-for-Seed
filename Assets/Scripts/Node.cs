@@ -21,16 +21,12 @@ public class Node : MonoBehaviour {
             Vector2 angle = (transform.position - partner.transform.position);
             float length = Vector2.Distance(transform.position, partner.transform.position) / 2.0f;
             Vector2 pos = (transform.position + partner.transform.position) / 2.0f;
-            root = Instantiate(connector, transform.position, Quaternion.identity);
+            root = Instantiate(connector, pos, Quaternion.identity);
             partner.root = root;
-            root.transform.localScale = new Vector2(0, 0.3f);
+            root.transform.localScale = new Vector2(length, 0.3f);
             root.transform.forward = angle;
             root.transform.eulerAngles = new Vector3(0, 0, root.transform.eulerAngles.x);
-            Connector con = connector.GetComponent<Connector>();
-            con.maxLength = length;
-            con.startPos = transform.position;
-            con.endPos = pos;
-            con.start = this;
+            connector.GetComponent<Connector>().start = this;
         }
     }
 }
