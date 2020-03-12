@@ -93,11 +93,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: {fileID: 0}
-  speed: 0.05
+  end: {fileID: 0}
+  speed: 0.2
+  connected: 0
   root:
-  - {fileID: 21300000, guid: 168dbc12fa8f80647bf2a09ea990d5f8, type: 3}
-  - {fileID: 21300000, guid: 168dbc12fa8f80647bf2a09ea990d5f8, type: 3}
-  - {fileID: 21300000, guid: 168dbc12fa8f80647bf2a09ea990d5f8, type: 3}
-  - {fileID: 21300000, guid: 168dbc12fa8f80647bf2a09ea990d5f8, type: 3}
-  - {fileID: 21300000, guid: 168dbc12fa8f80647bf2a09ea990d5f8, type: 3}
-  - {fileID: 21300000, guid: 168dbc12fa8f80647bf2a09ea990d5f8, type: 3}
+  - {fileID: 21300008, guid: 628d36c44f66d784494852d3d8ee2845, type: 3}
+  - {fileID: 21300004, guid: 628d36c44f66d784494852d3d8ee2845, type: 3}
+  - {fileID: 21300000, guid: 628d36c44f66d784494852d3d8ee2845, type: 3}
+  - {fileID: 21300010, guid: 628d36c44f66d784494852d3d8ee2845, type: 3}
+  - {fileID: 21300006, guid: 628d36c44f66d784494852d3d8ee2845, type: 3}
+  - {fileID: 21300002, guid: 628d36c44f66d784494852d3d8ee2845, type: 3}

@@ -7,9 +7,13 @@ public class Connector : MonoBehaviour {
     public Node end;
     public float speed;
     float num;
+    public bool connected;
+    bool doConnect;
 
     [SerializeField]
     Sprite[] root;
+
+    float colour;
     // Start is called before the first frame update
     void Start() {
         
@@ -20,6 +24,19 @@ public class Connector : MonoBehaviour {
         if (num < 5) {
             num += speed;
         }
+        else if (num >= 5 && connected) {
+            GetComponent<SpriteRenderer>().color = new Color(Mathf.Sin(colour), 1 , Mathf.Sin(colour));
+            colour+= 0.03f;
+            doConnect = true;
+        }
         GetComponent<SpriteRenderer>().sprite = root[Mathf.RoundToInt(num)];
+        if (doConnect) DoConnect();
+    }
+
+    void DoConnect() {
+        Connector[] roots = FindObjectsOfType<Connector>();
+        for (int i = 0; i < roots.Length; i++) {
+            if (roots[i].end == start) roots[i].connected = true;
+        }
     }
 }

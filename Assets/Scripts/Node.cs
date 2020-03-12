@@ -8,7 +8,10 @@ public class Node : MonoBehaviour {
     [SerializeField]
     GameObject connector;
 
+
     public GameObject root;
+    public bool connected;
+    bool doConnect;
     // Start is called before the first frame update
     void Start() {
         
@@ -30,14 +33,20 @@ public class Node : MonoBehaviour {
             root.transform.eulerAngles = new Vector3(0, 0, (Mathf.Abs(root.transform.eulerAngles.x) * mod) + 0.0f);
             root.transform.localScale = new Vector3(root.transform.localScale.x * mod, root.transform.localScale.y, 0);
             if (transform.position.y > partner.transform.position.y) {
-                connector.GetComponent<Connector>().start = this;
-                connector.GetComponent<Connector>().end = partner;
+                root.GetComponent<Connector>().start = this;
+                root.GetComponent<Connector>().end = partner;
+                root.transform.parent = transform;
             }
             else {
-                connector.GetComponent<Connector>().start = partner;
-                connector.GetComponent<Connector>().end = this;
+                root.GetComponent<Connector>().start = partner;
+                root.GetComponent<Connector>().end = this;
                 root.transform.localScale = new Vector3(-root.transform.localScale.x, root.transform.localScale.y, 0);
+                root.transform.parent = partner.transform;
             }
+        }
+        if (!doConnect && connected) {
+            doConnect = true;
+            root.GetComponent<Connector>().connected = true;
         }
     }
 }
