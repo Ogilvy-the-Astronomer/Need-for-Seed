@@ -23,10 +23,21 @@ public class Node : MonoBehaviour {
             Vector2 pos = (transform.position + partner.transform.position) / 2.0f;
             root = Instantiate(connector, pos, Quaternion.identity);
             partner.root = root;
-            root.transform.localScale = new Vector2(length, 0.3f);
+            root.transform.localScale = new Vector2(length / 20.0f, length / 20.0f);
             root.transform.forward = angle;
-            root.transform.eulerAngles = new Vector3(0, 0, root.transform.eulerAngles.x);
-            connector.GetComponent<Connector>().start = this;
+            int mod = 1;
+            if (transform.position.x > partner.transform.position.x) mod = -1;
+            root.transform.eulerAngles = new Vector3(0, 0, (Mathf.Abs(root.transform.eulerAngles.x) * mod) + 0.0f);
+            root.transform.localScale = new Vector3(root.transform.localScale.x * mod, root.transform.localScale.y, 0);
+            if (transform.position.y > partner.transform.position.y) {
+                connector.GetComponent<Connector>().start = this;
+                connector.GetComponent<Connector>().end = partner;
+            }
+            else {
+                connector.GetComponent<Connector>().start = partner;
+                connector.GetComponent<Connector>().end = this;
+                root.transform.localScale = new Vector3(-root.transform.localScale.x, root.transform.localScale.y, 0);
+            }
         }
     }
 }

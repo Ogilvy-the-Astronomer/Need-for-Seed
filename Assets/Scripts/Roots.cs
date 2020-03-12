@@ -26,16 +26,19 @@ public class Roots : MonoBehaviour {
                     }
                 }
                 else {
-                    Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    parentNode = Instantiate(Node, pos, Quaternion.identity) as GameObject;
+                    //Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    //parentNode = Instantiate(Node, pos, Quaternion.identity) as GameObject;
                 }
             }
             else if (parentNode) {
                 Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                GameObject childNode = Instantiate(Node, pos, Quaternion.identity) as GameObject;
-                childNode.GetComponent<Node>().partner = parentNode.GetComponent<Node>();
-                parentNode.GetComponent<Node>().partner = childNode.GetComponent<Node>();
-                parentNode = null;
+                if (pos.y < parentNode.transform.position.y) {
+                    GameObject childNode = Instantiate(Node, pos, Quaternion.identity) as GameObject;
+                    childNode.GetComponent<Node>().partner = parentNode.GetComponent<Node>();
+                    parentNode.GetComponent<Node>().partner = childNode.GetComponent<Node>();
+                    parentNode = null;
+                    childNode = null;
+                }
             }
         }
     }
