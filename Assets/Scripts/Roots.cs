@@ -43,8 +43,8 @@ public class Roots : MonoBehaviour {
                         if (hit.transform.GetComponent<Ground>().hardness <= tech) {
                             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                             if (Vector2.Distance(pos, parentNode.transform.position) < maxLength && Vector2.Distance(pos, parentNode.transform.position) > minLength) {
-                                if (pos.y < parentNode.transform.position.y && rm.currentNutrients >= 20 && !parentNode.GetComponent<Node>().connected) {
-                                    rm.currentNutrients -= 20;
+                                if (pos.y < parentNode.transform.position.y && rm.currentSunlight >= 20 && !parentNode.GetComponent<Node>().connected) {
+                                    rm.currentSunlight -= 20;
                                     GameObject childNode = Instantiate(Node, (Vector3)pos - Vector3.forward, Quaternion.identity) as GameObject;
                                     childNode.transform.parent = parentNode.transform;
                                     childNode.GetComponent<Node>().partner = parentNode.GetComponent<Node>();
