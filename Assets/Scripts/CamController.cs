@@ -23,4 +23,8 @@ public class CamController : MonoBehaviour {
     public void Quit() {
         Application.Quit();
     }
+
+    public void Win() {
+        SceneManager.LoadScene("End");
+    }
 }

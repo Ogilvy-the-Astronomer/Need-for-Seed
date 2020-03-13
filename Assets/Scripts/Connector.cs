@@ -13,10 +13,16 @@ public class Connector : MonoBehaviour {
     [SerializeField]
     Sprite[] root;
 
+    [SerializeField]
+    List<AudioClip> sounds;
+
+    bool first;
+
     float colour;
     // Start is called before the first frame update
     void Start() {
-        
+        if (FindObjectsOfType<Connector>().Length == 1) first = true;
+        GetComponent<AudioSource>().PlayOneShot(sounds[Random.Range(0, 2)]);
     }
 
     // Update is called once per frame
@@ -26,7 +32,9 @@ public class Connector : MonoBehaviour {
         }
         else if (num >= 5 && connected) {
             GetComponent<SpriteRenderer>().color = new Color(Mathf.Sin(colour), 1 , Mathf.Sin(colour));
-            colour+= 0.03f;
+            end.GetComponent<SpriteRenderer>().color = new Color(Mathf.Sin(colour), 1, Mathf.Sin(colour));
+            if(first) start.GetComponent<SpriteRenderer>().color = new Color(Mathf.Sin(colour), 1, Mathf.Sin(colour));
+            colour += 0.03f;
             doConnect = true;
         }
         GetComponent<SpriteRenderer>().sprite = root[Mathf.RoundToInt(num)];

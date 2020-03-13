@@ -19,6 +19,11 @@ public class LookAtSun : MonoBehaviour
     private float m_energyGained;
 
 
+    [SerializeField]
+    Sprite lunaLeaf;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +33,9 @@ public class LookAtSun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.GetChild(0).GetComponent<SpriteRenderer>().sprite != lunaLeaf && m_lunar) {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = lunaLeaf;
+        }
         if (m_dayCycler.GetComponent<SunMoonCycle>().m_isDay)
         {
             Vector2 dir = Camera.main.WorldToScreenPoint(m_sun.transform.position) - Camera.main.WorldToScreenPoint(transform.position);
@@ -68,7 +76,9 @@ public class LookAtSun : MonoBehaviour
                 }
             }
             m_energyGained = m_energyGainPercent / (m_angleDiff + 10);
-            m_resources.GetComponent<ResourceManager>().currentSunlight += m_energyGained;
+            if (m_resources.GetComponent<ResourceManager>().currentSunlight < m_resources.GetComponent<ResourceManager>().maxSunlight) {
+                m_resources.GetComponent<ResourceManager>().currentSunlight += m_energyGained;
+            }
             //Debug.Log("Energy Gained: " + m_energyGained);
         }
         else if (!m_lunar)

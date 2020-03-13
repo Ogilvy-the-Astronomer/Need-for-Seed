@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SunMoonCycle : MonoBehaviour
 {
+    public List<AudioClip> sounds;
     // Publics
     public GameObject m_sunCycler;
     public GameObject m_moonCycler;
@@ -45,6 +46,7 @@ public class SunMoonCycle : MonoBehaviour
 
     void ChangeToDay()
     {
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(sounds[0]);
         m_moonCycler.transform.eulerAngles = new Vector3(0.0f, 0.0f, 30.0f);
         m_moonCycler.SetActive(false);
         m_sunCycler.SetActive(true);
@@ -52,6 +54,7 @@ public class SunMoonCycle : MonoBehaviour
 
     void ChangeToNight()
     {
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(sounds[1]);
         m_sunCycler.transform.eulerAngles = new Vector3(0.0f, 0.0f, 30.0f);
         m_moonCycler.SetActive(true);
         m_sunCycler.SetActive(false);

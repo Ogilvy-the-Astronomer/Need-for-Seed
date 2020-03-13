@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Howred.unity
+    guid: d45f31e2cb0c19740a04aadfc9919eca
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: 6fbba5997f5017547893b255903371e4
   m_configObjects: {}
