@@ -158,7 +158,7 @@ public class ResourceManager : MonoBehaviour {
     public void BuyingLeaf(TechTreeButton _tech) {
         if (_tech.cost <= currentNutrients) {
             currentNutrients -= _tech.cost;
-            if (leafCount < 4) {
+            if (leafCount < 5) {
                 leavesGO[leafCount].SetActive(true);
                 //Debug.Log("BSBHSBHSVHVS");
                 _tech.cost += 20;
